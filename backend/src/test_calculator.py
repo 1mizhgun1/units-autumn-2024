@@ -29,7 +29,7 @@ class TestCalculator(unittest.TestCase):
     def test_addition_inf(self):
         self.assertEqual(self.calculator.addition(float('inf'), float('inf')), float('inf'))
         self.assertEqual(self.calculator.addition(float('-inf'), float('-inf')), float('-inf'))
-        self.assertEqual(self.calculator.addition(float('inf'), float('-inf')), math.nan)
+        self.assertTrue(math.isnan(self.calculator.addition(float('inf'), float('-inf'))))
 
     def test_multiplication(self):
         self.assertEqual(self.calculator.multiplication(7, 8), 56)
@@ -55,8 +55,8 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.multiplication(1, float('inf')), float('inf'))
         self.assertEqual(self.calculator.multiplication(float('inf'), -1), float('-inf'))
         self.assertEqual(self.calculator.multiplication(-1, float('-inf')), float('inf'))
-        self.assertEqual(self.calculator.multiplication(float('-inf'), 0), math.nan)
-        self.assertEqual(self.calculator.multiplication(0, float('-inf')), math.nan)
+        self.assertTrue(math.isnan(self.calculator.multiplication(float('-inf'), 0)))
+        self.assertTrue(math.isnan(self.calculator.multiplication(0, float('-inf'))))
 
     def test_subtraction(self):
         self.assertEqual(self.calculator.subtraction(7, 4), 3)
@@ -77,8 +77,8 @@ class TestCalculator(unittest.TestCase):
             self.calculator.subtraction([1, 2], 5)
 
     def test_subtraction_inf(self):
-        self.assertEqual(self.calculator.subtraction(float('inf'), float('inf')), math.nan)
-        self.assertEqual(self.calculator.subtraction(float('-inf'), float('-inf')), math.nan)
+        self.assertTrue(math.isnan(self.calculator.subtraction(float('inf'), float('inf'))))
+        self.assertTrue(math.isnan(self.calculator.subtraction(float('-inf'), float('-inf'))))
 
     def test_division(self):
         self.assertEqual(self.calculator.division(56, 8), 7)
@@ -101,10 +101,10 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.division(float('inf'), 1), float('inf'))
         self.assertEqual(self.calculator.division(float('-inf'), 1), float('-inf'))
         self.assertEqual(self.calculator.division(1, float('inf')), 0)
-        self.assertEqual(self.calculator.division(float('inf'), float('inf')), math.nan)
-        self.assertEqual(self.calculator.division(float('-inf'), float('-inf')), math.nan)
-        self.assertEqual(self.calculator.division(float('inf'), float('-inf')), math.nan)
-        self.assertEqual(self.calculator.division(float('-inf'), float('inf')), math.nan)
+        self.assertTrue(math.isnan(self.calculator.division(float('inf'), float('inf'))))
+        self.assertTrue(math.isnan(self.calculator.division(float('-inf'), float('-inf'))))
+        self.assertTrue(math.isnan(self.calculator.division(float('inf'), float('-inf'))))
+        self.assertTrue(math.isnan(self.calculator.division(float('-inf'), float('inf'))))
 
     def test_absolute(self):
         self.assertEqual(self.calculator.absolute(2), 2)
